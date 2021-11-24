@@ -1,2 +1,0 @@
-# DjangoJobBoard
-JobBoard
