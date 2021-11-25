@@ -16,8 +16,8 @@ def ListJobs(request):
     context={'jobs':page_obj,'counts':len(list),'categoreis':Category.objects.all}
     return render(request,"job/JobList.html",context=context)
 
-def JobDetails(request,id):
-    job = Job.objects.get(id__exact=id)
+def JobDetails(request,slug):
+    job = Job.objects.get(slug__exact=slug)
     context={'job':job}
     return render(request,"job/JobDetails.html",context=context)
  
