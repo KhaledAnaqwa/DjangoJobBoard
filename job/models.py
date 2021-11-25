@@ -10,6 +10,12 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.name
 
+def upload(instance , filename):
+    name,ext= filename.split(".")
+    import time
+    milliseconds = str(int(round(time.time() * 1000)))
+    return f"jobs/{instance.id}/{milliseconds+'.'+ ext}"
+
 class Job(models.Model):
     title=models.CharField(max_length=120)
     #locattion
@@ -18,6 +24,7 @@ class Job(models.Model):
     published_at=models.DateTimeField(auto_now=True)
     vacances=models.IntegerField(default=1)
     salary=models.IntegerField(default=0)
+    image=models.ImageField(upload_to=upload,default=1)
     category=models.ForeignKey('Category',on_delete= CASCADE,default=1)
     experience=models.IntegerField(default=1)
 
