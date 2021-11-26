@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.utils.text import slugify
@@ -23,6 +24,7 @@ def ApplyUpload(instance , filename):
     return f"apply/{instance.id}/{milliseconds+'.'+ ext}"
 
 class Job(models.Model):
+    owner=models.ForeignKey(User,related_name="Job_Owner",on_delete=CASCADE,default=1)
     title=models.CharField(max_length=120)
     #locattion
     job_type=models.CharField(max_length=2,choices=JOB_TYPE,default="FT")
@@ -39,7 +41,7 @@ class Job(models.Model):
         return self.title
 
     def save(self, *args, **kwargs) -> None:
-        self.slug=slugify(self.title, allow_unicode=True)
+        self.slug=slugify(self.title + str(self.id), allow_unicode=True)
         return super().save(*args, **kwargs)
 
 class Apply(models.Model):

@@ -1,0 +1,10 @@
+{
+    "emmet.includeLanguages": {
+        "html": "html",
+        "python": "python3"
+    },
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.defaultInterpreterPath": "python3",
+    "python.linting.pylintEnabled": true
+}
