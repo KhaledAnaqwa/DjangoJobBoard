@@ -16,6 +16,11 @@ def upload(instance , filename):
     import time
     milliseconds = str(int(round(time.time() * 1000)))
     return f"jobs/{instance.id}/{milliseconds+'.'+ ext}"
+def ApplyUpload(instance , filename):
+    name,ext= filename.split(".")
+    import time
+    milliseconds = str(int(round(time.time() * 1000)))
+    return f"apply/{instance.id}/{milliseconds+'.'+ ext}"
 
 class Job(models.Model):
     title=models.CharField(max_length=120)
@@ -36,3 +41,16 @@ class Job(models.Model):
     def save(self, *args, **kwargs) -> None:
         self.slug=slugify(self.title, allow_unicode=True)
         return super().save(*args, **kwargs)
+
+class Apply(models.Model):
+    job=models.ForeignKey('Job',related_name="Apply_Job",on_delete=CASCADE,default=1)
+    name=models.CharField(max_length=50)
+    email=models.EmailField(max_length=120)
+    website=models.URLField()
+    cv=models.FileField(upload_to=ApplyUpload)
+    cover_latter=models.TextField(max_length=500)
+    create_at=models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
+    
