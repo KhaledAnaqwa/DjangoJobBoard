@@ -45,7 +45,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="{% url 'jobs:JobList' %}">
                                         <img src="{% static 'img/logo.png' %}" alt="">
                                     </a>
                                 </div>
@@ -54,8 +54,8 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">home</a></li>
-                                            <li><a href="jobs.html">Browse Job</a></li>
+                                            <li><a href="{% url 'jobs:JobList' %}">home</a></li>
+                                            <li><a href="{% url 'jobs:JobList' %}">Browse Job</a></li>
                                             <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="candidate.html">Candidates </a></li>
@@ -69,16 +69,27 @@
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="{% url 'contact:contact' %}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
+                                {% if request.user.is_authenticated == False %}
                                     <div class="phone_num d-none d-xl-block">
-                                        <a href="#">Log in</a>
+                                        <a href="{% url 'login' %}">Log in</a>
                                     </div>
+
+                                {% else %}
+                                <div class="phone_num d-none d-xl-block">
+                                <a href="{% url 'accounts:profile' %}">Profile</a>
+                                </div>
+                                    <div class="phone_num d-none d-xl-block">
+                                        
+                                        <a href="{% url 'logout' %}">Log out</a>
+                                    </div>
+                                {% endif %}
                                     <div class="d-none d-lg-block">
                                         <a class="boxed-btn3" href="{% url 'jobs:AddJob' %}">Post a Job</a>
                                     </div>

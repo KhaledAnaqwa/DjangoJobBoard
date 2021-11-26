@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block body %}
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Hi {{user}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    
+                    <div class="apply_job_form white-bg">
+                        <h4>Update User Profile</h4>
+     
+                            {# Display a form #}
+                            
+                            <form  enctype="multipart/form-data" method="post"  class="form">
+                                {% csrf_token %}
+                                {% bootstrap_form userform %}
+                                {% bootstrap_form profileform %}
+                                {% buttons %}
+                               
+                                 <button class="boxed-btn3 w-100" style="margin-top: 10px;" type="submit">Update</button>
+                                   
+                                {% endbuttons %}
+                            </form>
+                            
+
+                            
+                    </div>
+                </div>
+       
+            </div>
+        </div>
+    </div>
+{% endblock body %}

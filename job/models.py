@@ -44,6 +44,9 @@ class Job(models.Model):
         self.slug=slugify(self.title + str(self.id), allow_unicode=True)
         return super().save(*args, **kwargs)
 
+    class Meta:
+        ordering = ["id"]
+
 class Apply(models.Model):
     job=models.ForeignKey('Job',related_name="Apply_Job",on_delete=CASCADE,default=1)
     name=models.CharField(max_length=50)
