@@ -6,18 +6,22 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 from .forms import ApplyForm,AddJobForm
 from django.contrib.auth.decorators import login_required
-
-import job
 from .models import Job,Category
+from .filters import JobFilter
+
+
 # Create your views here.
 
 def ListJobs(request):
     list = Job.objects.all()
+    myJobfillter=JobFilter(request.GET,queryset=list)
+    list=myJobfillter.qs
     paginator = Paginator(list, 5) # Show 5 jobs per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # context={'jobs':list,'counts':len(list),'categoreis':Category.objects.all}
-    context={'jobs':page_obj,'counts':len(list),'categoreis':Category.objects.all}
+    
+    
+    context={'jobs':page_obj,'counts':len(list),'categoreis':Category.objects.all,'filter':myJobfillter}
     return render(request,"job/JobList.html",context=context)
 
 # def handle_uploaded_file(f):

@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load bootstrap5 %}
 {% block body %}
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
@@ -23,8 +24,8 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>Filter</h3>
-                            <form action="#">
-                                <div class="row">
+                            <form method="GET">
+                                {% comment %} <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
                                             <input type="text" placeholder="Search keyword">
@@ -84,19 +85,25 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div> {% endcomment %}
+                                {% comment %} {{filter.form}} {% endcomment %}
+                                {% bootstrap_form filter.form %}
+                                {% buttons %}
+
+                                <div class="reset_btn">
+                                 <button  class="boxed-btn3 w-100" type="submit">Reset</button>
                                 </div>
+                                {% endbuttons %}
                             </form>
                         </div>
-                        <div class="range_wrap">
+                        {% comment %} <div class="range_wrap">
                             <label for="amount">Price range:</label>
                             <div id="slider-range"></div>
                             <p>
                                 <input type="text" id="amount" readonly style="border:0; color:#7A838B; font-size: 14px; font-weight:400;">
                             </p>
-                        </div>
-                        <div class="reset_btn">
-                            <button  class="boxed-btn3 w-100" type="submit">Reset</button>
-                        </div>
+                        </div> {% endcomment %}
+                        
                     </div>
                 </div>
                 <div class="col-lg-9">
