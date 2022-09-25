@@ -1,4 +1,4 @@
-#!/Users/khaled/Documents/Django/JobBoard/venv/bin/python3
+#!/Users/khaled/Documents/Django/JobBoard/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

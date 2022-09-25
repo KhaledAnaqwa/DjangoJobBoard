@@ -1,4 +1,4 @@
-#!/Users/khaled/Documents/Django/JobBoard/venv/bin/python3
+#!/Users/khaled/Documents/Django/JobBoard/venv/bin/python3.10
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
